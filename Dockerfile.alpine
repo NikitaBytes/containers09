@@ -1,0 +1,17 @@
+# Используем базовый образ Alpine Linux
+FROM alpine:latest
+
+# Обновляем систему
+RUN apk update && apk upgrade
+
+# Устанавливаем Nginx
+RUN apk add nginx
+
+# Копируем файлы сайта
+COPY site /var/www/html
+
+# Открываем порт 80
+EXPOSE 80
+
+# Запускаем Nginx
+CMD ["nginx", "-g", "daemon off;"]

@@ -1,0 +1,15 @@
+body {
+  font-family: sans-serif;
+  text-align: center;
+  background: #f0f0f0;
+}
+.box {
+  margin: 40px auto;
+  width: 150px;
+  height: 150px;
+  background: #3498db;
+  transition: transform 0.3s;
+}
+.box:hover {
+  transform: scale(1.2) rotate(10deg);
+}

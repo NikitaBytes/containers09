@@ -1,0 +1,17 @@
+# Используем базовый образ Ubuntu
+FROM ubuntu:latest
+
+# Обновляем систему
+RUN apt-get update && apt-get upgrade -y
+
+# Устанавливаем Nginx
+RUN apt-get install -y nginx
+
+# Копируем файлы сайта в директорию сервера
+COPY site /var/www/html
+
+# Открываем порт 80
+EXPOSE 80
+
+# Запускаем Nginx в режиме демона
+CMD ["nginx", "-g", "daemon off;"]

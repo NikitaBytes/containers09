@@ -1,0 +1,16 @@
+# Используем базовый образ Ubuntu
+FROM ubuntu:latest
+
+# Обновляем систему, устанавливаем Nginx и удаляем временные файлы в одном слое
+RUN apt-get update && apt-get upgrade -y && \
+    apt-get install -y nginx && \
+    apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# Копируем файлы сайта
+COPY site /var/www/html
+
+# Открываем порт 80
+EXPOSE 80
+
+# Запускаем Nginx
+CMD ["nginx", "-g", "daemon off;"]

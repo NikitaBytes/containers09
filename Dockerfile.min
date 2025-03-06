@@ -1,0 +1,16 @@
+# Используем Alpine для минимального размера
+FROM alpine:latest
+
+# Обновляем систему, устанавливаем Nginx и очищаем кеш
+RUN apk update && apk upgrade && \
+    apk add nginx && \
+    rm -rf /var/cache/apk/*
+
+# Копируем файлы сайта
+COPY site /var/www/html
+
+# Открываем порт 80
+EXPOSE 80
+
+# Запускаем Nginx
+CMD ["nginx", "-g", "daemon off;"]
